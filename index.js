@@ -5,7 +5,7 @@ var express = require("express");
 // Construct a schema, using GraphQL schema language
 var restaurants = [ // sample data
     {
-        id: 1
+        id: 1,
         name: "WoodsHill",
         description:
         "American cuisine, farm to table, with fresh produce every day",

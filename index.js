@@ -117,7 +117,7 @@ var root = {
         if (!restaurant[id]) {
             throw new Error("restaurant doesn't exist");
         }
-        restaurants[id] {
+        restaurants[id] = {
             ...restaurants[id],
             ...restaurant,
         };

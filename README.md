@@ -1,7 +1,7 @@
 # graphql-restaurant-CRUD
 This is a sample restaurant database containing restaurant's name, description, main dishes, and price. 
 
-# To Access:
+## To Access:
 1. Clone repo
 2. Open integrated terminal
 3. npm install

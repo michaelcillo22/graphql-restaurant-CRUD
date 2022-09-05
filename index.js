@@ -86,23 +86,25 @@ type DeleteResponse{
 }
 type Mutation{
     setrestaurant(input: restaurantInput): restaurant
+
     deleterestaurant(id: Int!): DeleteResponse
+
     editrestaurant(id: Int!, name: String!): restaurant
 }
 `);
 // The root provides a resolver function for each API endpoint
 var root = {
-    restaurant: (arg) => { // This gets a single restaurant based on a provided ID
-        restaurants[arg.id]
-    },
-    restaurants: () => { // This gets a list of all restaurants. 
-        restaurants
-    },
+    restaurant : (arg) => // This gets a single restaurant based on a provided ID
+        restaurants[arg.id],
+
+    restaurants : () =>  // This gets a list of all restaurants. 
+        restaurants,
+
     setrestaurant: ({ input }) => { // This creates a new restaurant.
         restaurants.push({ 
             name: input.name, 
-            email: input.email,
-            age: input.age
+            description: input.description,
+            dishes: input.dishes
         });
         return input
     },
@@ -114,12 +116,11 @@ var root = {
         return ({ ok })
     },
     editrestaurant: ({ id, ...restaurant }) => { // This updates a restaurant based on the provided id.
-        if (!restaurant[id]) {
+        if (!restaurants[id]) {
             throw new Error("restaurant doesn't exist");
         }
         restaurants[id] = {
-            ...restaurants[id],
-            ...restaurant,
+            ...restaurants[id],...restaurant
         };
         return restaurants[id]
       }
@@ -136,4 +137,4 @@ graphqlHTTP({
 var port = 5500;
 app.listen(5500, () => console.log("Running Graphql on Port:" + port));
 
-export default root;
+//export default root;
